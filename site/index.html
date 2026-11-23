@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="cream">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="奶蛙导航站（NAIWA HUB）— 50+ 奶蛙魔性动/静表情包、11 阶《合成大奶蛙》小游戏、奶家人全谱系图鉴、奶蛙梗百科科普与 B 站高播放二创视频导航。">
+  <meta name="theme-color" content="#fffdf4">
+  <title>奶蛙导航站 · NAIWA HUB — 表情包 · 合成大奶蛙 · 奶家人宇宙</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FFE259' stroke='%231E9E5A' stroke-width='4'/%3E%3Ccircle cx='21' cy='24' r='7.5' fill='%2386EFAC' stroke='%23157A44' stroke-width='2'/%3E%3Ccircle cx='43' cy='24' r='7.5' fill='%2386EFAC' stroke='%23157A44' stroke-width='2'/%3E%3Ccircle cx='21' cy='24' r='3.5' fill='%231D271F'/%3E%3Ccircle cx='43' cy='24' r='3.5' fill='%231D271F'/%3E%3Cpath d='M18 40c5 8 23 8 28 0' fill='none' stroke='%231D271F' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/css/style.css?v=2.7">
+  <script src="/assets/js/data.js?v=2.7" defer></script>
+  <script src="/assets/js/game.js?v=2.7" defer></script>
+  <script src="/assets/js/app.js?v=2.7" defer></script>
+</head>
+<body>
+  <!-- 顶部粘性导航 -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">
+        <img class="brand-avatar" src="/assets/chars/11_naiwa.jpg" alt="奶蛙站徽">
+        <div class="brand-text">
+          <span class="brand-name">奶蛙导航站</span>
+          <span class="brand-sub">NAIWA HUB · 2026</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#game">🎮 合成大奶蛙</a>
+        <a href="#memes">😂 表情包库</a>
+        <a href="#family">🧬 奶家人图鉴</a>
+        <a href="#lore">📖 奶蛙梗科普</a>
+        <a href="#videos">🎬 二创视频</a>
+        <a href="#university">🎓 奶蛙大学</a>
+        <a href="#directory">🧭 生态导航</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button type="button" class="chip-btn topbar-player-pill" id="topbar-player-chip" title="点击自由更换头像与名字">
+          <img class="topbar-player-avatar" id="topbar-player-avatar" src="/assets/chars/01_naishu.jpg" alt="">
+          <span id="topbar-player-name">识别身份中…</span>
+        </button>
+
+        <div class="audio-dock-wrap" id="audio-dock-wrap">
+          <button type="button" class="chip-btn audio-trigger-btn" id="audio-panel-toggle" aria-expanded="false" aria-controls="audio-mixer-popover" title="调节背景音乐与音效音量">
+            <span class="audio-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span id="audio-trigger-label">🎵 声音台</span>
+          </button>
+
+          <div class="audio-mixer-popover" id="audio-mixer-popover" hidden role="dialog" aria-label="声音与背景音乐控制台">
+            <div class="mixer-head">
+              <div class="mixer-title">🎛️ 声音与背景音乐</div>
+              <div class="mixer-head-actions">
+                <button type="button" class="mixer-mute-all-btn" id="audio-mute-all">🔇 一键静音</button>
+                <button type="button" class="mixer-close-btn" id="audio-mixer-close" aria-label="关闭声音控制台">×</button>
+              </div>
+            </div>
+
+            <div class="mixer-section">
+              <div class="mixer-label-row">
+                <span>🎵 背景音乐（支持后台持续播放）</span>
+              </div>
+              <div class="bgm-track-list" role="radiogroup" aria-label="背景音乐选择">
+                <button type="button" class="bgm-track-btn" data-bgm-track="dj" role="radio" aria-checked="true">
+                  <span class="bgm-track-ico">🎧</span>
+                  <span class="bgm-track-meta">
+                    <strong>人鱼的眼泪 (DJ版)</strong>
+                    <small>豆奶/奶龙热梗小曲 · 2:05</small>
+                  </span>
+                  <span class="bgm-track-badge">选用</span>
+                </button>
+                <button type="button" class="bgm-track-btn" data-bgm-track="orig" role="radio" aria-checked="false">
+                  <span class="bgm-track-ico">🌊</span>
+                  <span class="bgm-track-meta">
+                    <strong>人鱼的眼泪 (原版)</strong>
+                    <small>EXO 中文原版 · 3:50</small>
+                  </span>
+                  <span class="bgm-track-badge">选用</span>
+                </button>
+                <button type="button" class="bgm-track-btn bgm-track-off" data-bgm-track="off" role="radio" aria-checked="false">
+                  <span class="bgm-track-ico">🔇</span>
+                  <span class="bgm-track-meta">
+                    <strong>关闭背景音乐</strong>
+                    <small>安静摸鱼，仅保留奶家人音效</small>
+                  </span>
+                  <span class="bgm-track-badge">已关闭</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="audio-now-bar" id="audio-now-bar">
+              <button type="button" class="audio-play-btn" id="audio-bgm-playbtn" title="播放 / 暂停背景音乐" aria-label="播放或暂停背景音乐">▶</button>
+              <div class="audio-now-main">
+                <div class="audio-now-top">
+                  <span class="audio-now-status" id="audio-now-status">准备就绪</span>
+                  <span class="audio-now-time" id="audio-bgm-time">0:00 / 2:06</span>
+                </div>
+                <input type="range" class="audio-seek-range" id="audio-bgm-seek" min="0" max="1000" value="0" aria-label="背景音乐播放进度">
+              </div>
+            </div>
+
+            <div class="mixer-section mixer-volumes">
+              <div class="vol-row">
+                <button type="button" class="vol-mute-btn" id="audio-bgm-mute" title="静音/恢复背景音乐" aria-label="静音或恢复背景音乐">🎵</button>
+                <div class="vol-ctrl">
+                  <div class="vol-meta">
+                    <label for="audio-bgm-vol">背景音乐音量</label>
+                    <span class="vol-val" id="audio-bgm-vol-val">38%</span>
+                  </div>
+                  <input type="range" class="vol-range" id="audio-bgm-vol" min="0" max="100" step="1" value="38" aria-label="背景音乐音量">
+                </div>
+              </div>
+
+              <div class="vol-row">
+                <button type="button" class="vol-mute-btn" id="audio-sfx-mute" title="静音/恢复奶家人音效" aria-label="静音或恢复奶家人音效">🔊</button>
+                <div class="vol-ctrl">
+                  <div class="vol-meta">
+                    <label for="audio-sfx-vol">奶家人音效音量</label>
+                    <div class="vol-meta-right">
+                      <button type="button" class="vol-test-btn" id="audio-sfx-test" title="试听当前音效音量">🐸 试音</button>
+                      <span class="vol-val" id="audio-sfx-vol-val">85%</span>
+                    </div>
+                  </div>
+                  <input type="range" class="vol-range" id="audio-sfx-vol" min="0" max="100" step="1" value="85" aria-label="奶家人音效音量">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="chip-btn" id="theme-toggle">🌙 池塘夜色</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero 首屏 -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-pill">🐸 全网呼叫奶家人 · 中文互联网奶科生物聚合圣地</div>
+          <h1 class="hero-title">
+            欢迎来到<br><span class="hl">奶蛙导航站</span>
+          </h1>
+          <p class="hero-subtitle">
+            从 2024 星野 AI 畸变到制霸 2026 中文互联网的抽象真神——一站收齐 <strong>50 张高清静/动表情包</strong>、亲手把<strong>最小奶鼠一路合成终极奶蛙</strong>、读懂<strong>奶家人全谱系科普</strong>与 <strong>B 站百万播放二创神作</strong>！
+          </p>
+
+          <div class="hero-cta">
+            <a href="#game" class="btn btn-primary">🎮 马上开玩：合成大奶蛙</a>
+            <a href="#memes" class="btn btn-yellow">😂 逛 50 张表情包库</a>
+            <a href="#videos" class="btn btn-ghost">🎬 刷百万播放二创</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-val">50 张</span>
+              <span class="stat-lbl">本地直出静/动表情</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val">11 阶</span>
+              <span class="stat-lbl">奶鼠 → 奶蛙物理合成</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val">16 部</span>
+              <span class="stat-lbl">B 站实测高播二创</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-val">21 院</span>
+              <span class="stat-lbl">奶蛙大学录取生成器</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 互动镇站狂笑奶蛙 -->
+        <div class="mascot-card" id="hero-mascot-btn" role="button" tabindex="0" aria-label="点一下奶蛙触发狂笑与大笑音效">
+          <div class="mascot-ring" id="hero-mascot-ring">
+            <div class="mascot-avatar-stage" id="hero-mascot-stage">
+              <img class="mascot-layer mascot-layer-idle" id="hero-mascot-idle" src="/assets/chars/11_naiwa.jpg" alt="镇站奶蛙">
+              <img class="mascot-layer mascot-layer-laugh" id="hero-mascot-belly" src="/assets/chars/hero_belly_laugh.gif" alt="奶蛙捂肚狂笑" decoding="async">
+              <img class="mascot-layer mascot-layer-laugh" id="hero-mascot-twitch" src="/assets/memes/m03_twitch_laugh.gif" alt="奶蛙抽动狂笑" decoding="async">
+            </div>
+            <span class="mascot-sound-badge" id="hero-sound-badge" aria-hidden="true">🔊 喝哈哈哈…</span>
+          </div>
+          <div class="mascot-hint" id="hero-mascot-hint">👆 点一下奶蛙，看它捂肚狂笑！</div>
+          <div class="mascot-counter">
+            累计狂笑功德：<strong id="laugh-counter">0</strong> 次
+          </div>
+          <div class="mascot-merit-bar">
+            <span class="mascot-merit-pill" id="mascot-laugh-rank">🙏 点击攒功德上全服榜</span>
+            <a href="#laugh-leaderboard" class="mascot-lb-jump" id="mascot-lb-jump">🏆 功德榜</a>
+          </div>
+          <div class="danmaku-stage" id="danmaku-stage" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- 累计狂笑功德排行榜 -->
+      <div class="container laugh-lb-wrap">
+        <div class="laugh-lb-card" id="laugh-leaderboard">
+          <div class="laugh-lb-head">
+            <div class="laugh-lb-title-wrap">
+              <h3>🙏 累计狂笑功德排行榜</h3>
+              <span class="laugh-lb-sub">点上方镇站奶蛙攒功德 · 独立 IP 永久记录 · 可自由换头像改名</span>
+            </div>
+            <div class="laugh-lb-meta">
+              <span class="laugh-stat-pill">全服总功德 <strong id="laugh-global-total">0</strong> 次</span>
+              <span class="laugh-stat-pill laugh-stat-me" id="laugh-my-summary">我的排名 <strong>待上榜</strong></span>
+              <button type="button" class="laugh-refresh-btn" id="laugh-lb-refresh" title="刷新全服狂笑功德榜">🔄 刷新</button>
+            </div>
+          </div>
+          <div class="laugh-lb-grid" id="laugh-leaderboard-list">
+            <div class="ip-lb-empty">正在读取全服狂笑功德排行…</div>
+          </div>
+          <div class="laugh-lb-my-pin" id="laugh-lb-my-pin" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块一：《合成大奶蛙》小游戏 -->
+    <section class="section" id="game">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">🎮 ARCADE MINI-GAME · 物理碰撞合成</span>
+            <h2 class="section-title">《合成大奶蛙》— 从最小奶鼠冲向终极奶蛙！</h2>
+            <p class="section-desc">
+              严格收录 11 位考据奶家人：<strong>奶鼠（最小）→ 奶蛋 → 奶鸡 → 奶猫 → 奶狗 → 奶包 → 奶猪 → 奶粉 → 奶pa → 奶龙 → 奶蛙（最大）</strong>。鼠标移动瞄准点击掉落，手机支持按住拖动松手掉落！
+            </p>
+          </div>
+        </div>
+
+        <div class="game-cabinet">
+          <div class="game-stage-col">
+            <div class="player-id-bar" id="player-id-card">
+              <div class="player-id-left">
+                <button type="button" class="player-avatar-btn" id="btn-avatar-edit" title="点击更换头像与名字" aria-label="更换头像与名字">
+                  <img class="player-id-avatar" id="player-avatar-img" src="/assets/chars/01_naishu.jpg" alt="当前玩家头像">
+                  <span class="player-avatar-edit-dot">✏️</span>
+                </button>
+                <div class="player-id-info">
+                  <span class="player-id-label" id="player-meta-text">IP 识别中…</span>
+                  <strong class="player-id-name" id="player-name-text">正在分配二次元身份…</strong>
+                </div>
+              </div>
+              <button type="button" class="player-edit-btn" id="btn-edit-profile" title="自由更换头像与名字">✏️ 换头像/改名</button>
+            </div>
+
+            <div class="game-hud-bar">
+              <div class="hud-pill">
+                <span>当前得分</span>
+                <strong id="game-score">0</strong>
+              </div>
+              <div class="hud-pill">
+                <span>IP 最高</span>
+                <strong id="game-best">0</strong>
+              </div>
+              <div class="hud-next">
+                <img id="game-next-img" src="/assets/chars/02_naidan.jpg" alt="下一个角色">
+                <div class="hud-next-meta">
+                  <span>下一个</span>
+                  <strong id="game-next-name">Lv.2 奶蛋</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="canvas-frame">
+              <canvas id="merge-canvas" width="420" height="620" tabindex="0" aria-label="合成大奶蛙游戏画布"></canvas>
+              <div class="game-overlay" id="game-overlay" hidden>
+                <div class="game-over-box">
+                  <img id="over-img" src="/assets/chars/11_naiwa.jpg" alt="最高合体角色">
+                  <h3>池塘满啦！蛙生重来 🐸</h3>
+                  <p style="margin:0 0 4px;font-size:12.5px;color:var(--green);font-weight:800;">
+                    挑战者：<span id="over-player">奶家人</span>
+                  </p>
+                  <p style="margin:0;font-size:13px;color:var(--ink-2);">
+                    本局最高合成：<strong id="over-char">Lv.1 奶鼠</strong>
+                  </p>
+                  <div class="over-stats">
+                    <div class="over-stat">
+                      <span>本局得分</span>
+                      <strong id="over-score">0</strong>
+                    </div>
+                    <div class="over-stat">
+                      <span>历史最高</span>
+                      <strong id="over-best">0</strong>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="btn-replay-game" style="width:100%;">
+                    🔄 再来一局
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="game-powerups">
+              <button type="button" class="power-btn" id="btn-shake" title="强力晃动池塘：颠飞卡位小球、大幅洗牌并助力相同奶家人碰头合成">
+                <span id="shake-label">🌀 摇一摇</span> <span class="power-count" id="shake-count">2</span>
+              </button>
+              <button type="button" class="power-btn" id="btn-cheese" title="丢出一块奶酪诱捕并清除桶内所有 Lv.1 奶鼠">
+                🧀 奶酪诱捕 <span class="power-count" id="cheese-count">2</span>
+              </button>
+              <button type="button" class="power-btn" id="btn-reset-game" title="重新开始本局">
+                🔄 重开
+              </button>
+            </div>
+
+            <div class="game-audio-strip" id="game-audio-strip" aria-label="游戏背景音乐与音量快捷调节">
+              <div class="gas-top">
+                <span class="gas-title">🎵 池塘电台</span>
+                <div class="gas-pills" role="radiogroup" aria-label="快速切换背景音乐">
+                  <button type="button" class="gas-pill" data-bgm-track="dj" title="人鱼的眼泪 (DJ版)">🎧 人鱼DJ</button>
+                  <button type="button" class="gas-pill" data-bgm-track="orig" title="人鱼的眼泪 (原版)">🌊 原版</button>
+                  <button type="button" class="gas-pill" data-bgm-track="off" title="关闭背景音乐">🔇 关BGM</button>
+                </div>
+                <button type="button" class="gas-play-btn" id="game-bgm-playbtn" title="播放 / 暂停背景音乐" aria-label="播放或暂停背景音乐">▶</button>
+              </div>
+              <div class="gas-sliders">
+                <div class="gas-vol-item">
+                  <button type="button" class="gas-mute-btn" id="game-bgm-mute" title="静音/恢复背景音乐" aria-label="静音或恢复背景音乐">🎵</button>
+                  <span class="gas-vol-lbl">音乐</span>
+                  <input type="range" class="vol-range gas-range" id="game-bgm-vol" min="0" max="100" step="1" value="38" aria-label="背景音乐音量">
+                  <span class="gas-vol-val" id="game-bgm-vol-val">38%</span>
+                </div>
+                <div class="gas-vol-item">
+                  <button type="button" class="gas-mute-btn" id="game-sfx-mute" title="静音/恢复奶家人音效" aria-label="静音或恢复奶家人音效">🔊</button>
+                  <span class="gas-vol-lbl">音效</span>
+                  <input type="range" class="vol-range gas-range" id="game-sfx-vol" min="0" max="100" step="1" value="85" aria-label="奶家人音效音量">
+                  <span class="gas-vol-val" id="game-sfx-vol-val">85%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-side-col">
+            <div class="leaderboard-box" id="ip-leaderboard-box">
+              <div class="ladder-head">
+                <h3 id="ip-lb-title">🏆 独立 IP 挑战者风云榜</h3>
+                <span class="unlock-pill" id="ip-total-count">已记录 0 位</span>
+              </div>
+              <div class="lb-tabs" role="tablist" aria-label="排行榜切换">
+                <button type="button" class="lb-tab is-active" data-lb-tab="score" role="tab" aria-selected="true">🎮 合成高分榜</button>
+                <button type="button" class="lb-tab" data-lb-tab="laugh" role="tab" aria-selected="false">🙏 狂笑功德榜</button>
+              </div>
+              <div class="ip-lb-list" id="ip-leaderboard-list">
+                <div class="ip-lb-empty">正在读取独立 IP 档案与排行…</div>
+              </div>
+            </div>
+
+            <div class="ladder-box">
+              <div class="ladder-head">
+                <h3>🧬 11 阶合成路线图（点 🔊 听原声 / 点头像看梗）</h3>
+                <span class="unlock-pill" id="unlock-count">1 / 11</span>
+              </div>
+              <div class="evo-ladder" id="evo-ladder"></div>
+            </div>
+
+            <div class="game-tips">
+              <strong>💡 奶蛙高分秘籍 & 彩蛋玩法：</strong>
+              <ul>
+                <li><strong>连击加分</strong>：1.1 秒内连续触发合成即可叠加 Combo 倍率！</li>
+                <li><strong>🧀 奶酪诱捕</strong>：呼应《废弃医院躲猫猫》名场面，关键时刻一键清光底层烦人的 Lv.1 奶鼠！</li>
+                <li><strong>🌀 摇一摇</strong>：两个相同角色被夹住碰不到时，摇一下池塘往往能触发连锁大爆炸！</li>
+                <li><strong>✨ 双蛙飞升</strong>：成功合出两只 <strong>Lv.11 奶蛙</strong> 并碰撞，触发传说级「双蛙湮灭 +2048 分」！</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块二：奶蛙表情包大全 -->
+    <section class="section" id="memes">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">😂 MEME VAULT · 50 张高清无外链</span>
+            <h2 class="section-title">奶蛙 & 奶家人表情包大全</h2>
+            <p class="section-desc">
+              精选 15 张魔性动图 GIF + 35 张高频聊天静图、世界名画改图与奶家人全家福，全部托管在站内高速直出——点击可放大灯箱、一键复制静图或直接保存发微信 / QQ / Telegram！
+            </p>
+          </div>
+          <span class="chip-btn" id="meme-match-count">共 50 张</span>
+        </div>
+
+        <div class="toolbar">
+          <div class="filter-tabs" role="tablist" aria-label="表情包分类">
+            <button type="button" class="tab-btn is-active" data-meme-cat="all">全部 (50)</button>
+            <button type="button" class="tab-btn" data-meme-cat="gif">🤣 魔性动图 GIF</button>
+            <button type="button" class="tab-btn" data-meme-cat="daily">💬 聊天神图</button>
+            <button type="button" class="tab-btn" data-meme-cat="art">🎨 名画艺术馆</button>
+            <button type="button" class="tab-btn" data-meme-cat="family">👨‍👩‍👧‍👦 奶家人家族</button>
+            <button type="button" class="tab-btn" data-meme-cat="fav">❤️ 我的收藏 (<span id="fav-tab-count">0</span>)</button>
+          </div>
+
+          <div class="search-box">
+            <input type="search" class="search-input" id="meme-search" placeholder="搜索：狂笑、奶蛋、斜眼、早八…" aria-label="搜索表情包">
+            <button type="button" class="chip-btn" id="meme-random-btn">🎲 随机斗图</button>
+          </div>
+        </div>
+
+        <div class="meme-grid" id="meme-grid"></div>
+
+        <div class="center-more" id="meme-more-wrap">
+          <button type="button" class="btn btn-yellow" id="meme-more-btn">展开全部 50 张奶蛙表情包 ↓</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块三：奶家人全谱系档案图鉴 -->
+    <section class="section" id="family">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">🧬 TAXONOMY · 奶科生物全户口本</span>
+            <h2 class="section-title">11 位核心「奶家人」谱系图鉴</h2>
+            <p class="section-desc">
+              从奶家动物园到跨界变异种，点击任意角色卡片即可打开专属档案，查看它的来历、战力评级与经典语录。
+            </p>
+          </div>
+        </div>
+
+        <div class="family-grid" id="family-grid"></div>
+      </div>
+    </section>
+
+    <!-- 模块四：奶蛙梗科普档案馆 -->
+    <section class="section" id="lore">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">📖 MILK FROG WIKI · 梗史考据</span>
+            <h2 class="section-title">奶蛙梗硬核科普档案馆</h2>
+            <p class="section-desc">
+              一文读懂「奶蛙」究竟从何而来、为什么跟奶龙和真实牛奶蛙都不是一回事，以及它如何演化为 2026 年现象级赛博亚文化。
+            </p>
+          </div>
+        </div>
+
+        <!-- 三句话速懂 -->
+        <div class="summary-trio">
+          <article class="trio-card">
+            <span class="trio-kicker">01 · 它是什么？</span>
+            <h3>AI 畸变诞生的抽象大笑生物</h3>
+            <p>
+              原型是深圳原创动漫形象「奶龙」，因 2024 年 10 月网友在 AI 智能体应用生成头像时模型发生形体偏差，意外画出梨形大肚、细长四肢、绿晕凸眼的青蛙状变异体，招牌动作是弯腰捂肚狂笑。
+            </p>
+          </article>
+          <article class="trio-card">
+            <span class="trio-kicker">02 · 它不是什么？</span>
+            <h3>非官方剧集角色，也非真实树蛙</h3>
+            <p>
+              奶蛙没有官方动画剧集（它是纯民间二创生长出的迷因），也不是真实自然界里的亚马逊「牛奶蛙」爬宠。因为只差一个字，中文搜索区经常出现找表情包和养青蛙的网友走错片场。
+            </p>
+          </article>
+          <article class="trio-card">
+            <span class="trio-kicker">03 · 现在发展到哪？</span>
+            <h3>破圈出海的完整赛博亚文化宇宙</h3>
+            <p>
+              早已超越单一表情包——衍生出 11+ 位「奶家人」家族、B 站 500 万+ 播放 AI 连续剧、虚拟「奶蛙大学」、海内外上百所高校漂流纸板立牌，以及近百件“奶蛙化”世界名画馆藏。
+            </p>
+          </article>
+        </div>
+
+        <!-- 时间轴 + 三方对照表 -->
+        <div class="lore-split">
+          <div class="panel-card">
+            <h3>🗓️ 奶蛙进化编年史（2020 — 2026）</h3>
+            <ol class="timeline" id="lore-timeline"></ol>
+          </div>
+
+          <div class="panel-card">
+            <h3>🔍 三方硬核辨析：别再认错啦！</h3>
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>维度</th>
+                    <th>原版奶龙</th>
+                    <th class="col-naiwa">抽象奶蛙 🐸</th>
+                    <th>亚马逊牛奶蛙</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>出身来源</td>
+                    <td>2020 深圳第七印象正版 3D 动画 IP</td>
+                    <td class="col-naiwa">2024.10 星野 AI 头像生成畸变二创</td>
+                    <td>南美热带雨林真实两栖树蛙</td>
+                  </tr>
+                  <tr>
+                    <td>外形特征</td>
+                    <td>圆润金黄小恐龙，大头短手，线条精致</td>
+                    <td class="col-naiwa">梨形身材、硕大肚皮、细长四肢、绿瞳凸眼</td>
+                    <td>蓝白/灰黑斑纹、吸盘指趾、会分泌乳白黏液</td>
+                  </tr>
+                  <tr>
+                    <td>气质画风</td>
+                    <td>呆萌、治愈、亲子合家欢</td>
+                    <td class="col-naiwa">夸张、荒诞、魔性、情绪解压</td>
+                    <td>爬宠圈高颜值冷门萌物</td>
+                  </tr>
+                  <tr>
+                    <td>标志动作</td>
+                    <td>抖肚子、喷火、跟小七冒险</td>
+                    <td class="col-naiwa">弯腰捂肚狂笑「哦齁齁齁」、侧眼审视</td>
+                    <td>树洞产卵、夜间鸣叫</td>
+                  </tr>
+                  <tr>
+                    <td>代表场景</td>
+                    <td>动画剧集、线下主题展、联名周边</td>
+                    <td class="col-naiwa">群聊斗图、AI 躲猫猫、高校立牌、名画恶搞</td>
+                    <td>生态雨林缸、爬宠饲养科普</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 热梗黑话词典 -->
+        <div class="glossary-grid" id="glossary-grid"></div>
+      </div>
+    </section>
+
+    <!-- 模块五：奶蛙二创视频导航 -->
+    <section class="section" id="videos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">🎬 VIDEO HUB · B 站真实验证爆款</span>
+            <h2 class="section-title">奶蛙二创视频精选导航</h2>
+            <p class="section-desc">
+              精挑细选 16 部 2026 年 B 站真实高播奶蛙 / 奶家人必看神作（最高单集 580 万+ 播放），覆盖起源考据、百万 AI 剧场、神仙手书与游戏 MOD，点击封面直达 B 站观看！
+            </p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="filter-tabs" role="tablist" aria-label="视频分类">
+            <button type="button" class="tab-btn is-active" data-video-cat="all">全部精选 (16)</button>
+            <button type="button" class="tab-btn" data-video-cat="ai">🔥 AI 百万剧情</button>
+            <button type="button" class="tab-btn" data-video-cat="lore">📚 起源与族谱科普</button>
+            <button type="button" class="tab-btn" data-video-cat="meme">🎨 手书 / MOD / 鬼畜</button>
+          </div>
+        </div>
+
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </section>
+
+    <!-- 模块六：趣味加餐 · 奶蛙大学录取通知书生成器 -->
+    <section class="section" id="university">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">🎓 BONUS TOOL · 21 学院 205 专业</span>
+            <h2 class="section-title">奶蛙大学 2026 届录取通知书生成器</h2>
+            <p class="section-desc">
+              输入你的网名，测测你的灵魂契合哪位奶家人、会被「奶蛙大学」哪个荒诞专业破格录取！支持本地实时渲染高清 PNG 证书并一键保存发群里！
+            </p>
+          </div>
+        </div>
+
+        <div class="uni-box">
+          <div class="uni-form">
+            <h3>领一张你的奶家人入学通知书 🐸</h3>
+            <p>
+              纯前端 Canvas 本地实时绘制，不上传任何隐私数据。输入名字生成专属归属，也可以疯狂点「换个专业」抽盲盒！
+            </p>
+            <input type="text" class="uni-input" id="uni-name-input" maxlength="16" placeholder="输入你的昵称（例如：大笑奶蛙王）" aria-label="输入你的昵称">
+            <div class="uni-btn-row">
+              <button type="button" class="btn btn-primary" id="uni-gen-btn">🎓 生成我的录取通知书</button>
+              <button type="button" class="btn btn-ghost" id="uni-rand-btn">🎲 换个专业/角色</button>
+            </div>
+            <div class="uni-btn-row">
+              <button type="button" class="btn btn-yellow" id="uni-dl-btn">📥 保存高清通知书 PNG</button>
+              <button type="button" class="btn btn-ghost" id="uni-copy-btn">📋 复制录取喜报文案</button>
+            </div>
+          </div>
+
+          <div class="uni-preview">
+            <canvas id="uni-canvas" width="900" height="540" aria-label="奶蛙大学录取通知书预览"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 模块七：奶蛙生态与实用导航 -->
+    <section class="section" id="directory">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">🧭 DIRECTORY · 冲浪传送门</span>
+            <h2 class="section-title">奶蛙宇宙生态 & 实用效率导航</h2>
+            <p class="section-desc">
+              汇集全网活跃的奶蛙开源仓库、梗百科、名画馆藏与日常创作冲浪常用直达入口。
+            </p>
+          </div>
+        </div>
+
+        <div class="nav-groups" id="nav-groups"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">🐸 奶蛙导航站 · NAIWA HUB（nailong.noshower.com）</div>
+      <p>非龙不蛙，何为真我？祝每一位来访的奶家人天天笑到捂肚子！</p>
+      <p>本站为奶蛙文化与抽象表情包爱好者整理的非盈利兴趣导航站，表情素材整理自开源社区与公开网络二创，与任何官方动画品牌无关。</p>
+    </div>
+  </footer>
+
+  <!-- 表情包灯箱弹窗 -->
+  <div class="modal-backdrop" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="表情包大图预览">
+    <div class="lightbox-box">
+      <button type="button" class="modal-close" id="lb-close" aria-label="关闭预览">×</button>
+      <div class="lb-stage">
+        <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="上一张">‹</button>
+        <img id="lb-img" src="" alt="">
+        <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="下一张">›</button>
+      </div>
+      <h3 class="lb-title" id="lb-title"></h3>
+      <div class="lb-tags" id="lb-tags"></div>
+      <div class="lb-actions">
+        <button type="button" class="btn btn-primary" id="lb-copy">📋 复制图片</button>
+        <a class="btn btn-yellow" id="lb-download" href="#" download>📥 保存原图</a>
+        <button type="button" class="btn btn-ghost" id="lb-fav">🤍 收藏表情</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 奶家人角色详情弹窗 -->
+  <div class="modal-backdrop" id="char-modal" hidden role="dialog" aria-modal="true" aria-label="奶家人角色档案">
+    <div class="char-modal-box">
+      <button type="button" class="modal-close" id="cm-close" aria-label="关闭档案">×</button>
+      <img id="cm-img" src="" alt="">
+      <div class="eyebrow" id="cm-level"></div>
+      <h3 style="margin:6px 0 4px;font-size:22px;font-weight:900;" id="cm-name"></h3>
+      <div style="font-size:13px;font-weight:800;color:var(--green);" id="cm-rank"></div>
+      <div style="font-size:13px;color:var(--ink-3);margin-top:4px;" id="cm-trait"></div>
+      <button type="button" class="cm-sound-btn" id="cm-sound-btn">🔊 试听专属合成原声</button>
+      <div class="cm-quote" id="cm-quote"></div>
+      <p style="margin:0;font-size:14px;color:var(--ink-2);text-align:left;" id="cm-desc"></p>
+    </div>
+  </div>
+
+  <!-- 玩家资料编辑弹窗（自由更换头像与名字） -->
+  <div class="modal-backdrop" id="profile-modal" hidden role="dialog" aria-modal="true" aria-label="更换头像与名字">
+    <div class="profile-modal-box">
+      <button type="button" class="modal-close" id="pm-close" aria-label="关闭">×</button>
+      <div class="eyebrow">🪪 PLAYER PROFILE · 独立 IP 档案</div>
+      <h3 class="pm-title">自由更换头像 &amp; 名字</h3>
+
+      <div class="pm-preview-card">
+        <img class="pm-preview-avatar" id="pm-preview-avatar" src="/assets/chars/01_naishu.jpg" alt="头像预览">
+        <div class="pm-preview-meta">
+          <strong id="pm-preview-name">奶家人</strong>
+          <span id="pm-preview-ip">IP *.*.*.*（仅展示前两段 · 后两段已隐藏）</span>
+        </div>
+      </div>
+
+      <div class="pm-field">
+        <div class="pm-field-head">
+          <label for="pm-name-input">玩家名字（1~20 字，初始随机二次元角色名）</label>
+          <div class="pm-quick-btns">
+            <button type="button" class="pm-mini-btn" id="pm-roll-anime">🎲 随机二次元名</button>
+            <button type="button" class="pm-mini-btn" id="pm-restore-init">↺ 恢复初始名</button>
+          </div>
+        </div>
+        <input type="text" class="pm-input" id="pm-name-input" maxlength="20" placeholder="输入你喜欢的名字…">
+      </div>
+
+      <div class="pm-field">
+        <div class="pm-field-head">
+          <span>选择头像（支持奶家人/动图表情，或上传本地图片）</span>
+          <div class="pm-quick-btns">
+            <label for="pm-avatar-upload" class="pm-mini-btn pm-upload-label">📤 上传图片</label>
+            <input type="file" id="pm-avatar-upload" accept="image/*" hidden>
+            <button type="button" class="pm-mini-btn" id="pm-avatar-auto">🏅 跟随最高阶位</button>
+          </div>
+        </div>
+        <div class="pm-avatar-grid" id="pm-avatar-grid"></div>
+      </div>
+
+      <div class="pm-actions">
+        <button type="button" class="btn btn-ghost" id="pm-cancel">取消</button>
+        <button type="button" class="btn btn-primary" id="pm-save">💾 保存头像与名字</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全局 Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
